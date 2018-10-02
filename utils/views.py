@@ -5,7 +5,7 @@ from django.core.files.storage import FileSystemStorage
 from django.template import  loader
 from django.shortcuts import render
 from django.http import HttpResponse
-
+from functions import *
 # Create your views here.
 def home(request):
     temp=loader.get_template('utils/home.html')
@@ -34,11 +34,17 @@ def split_do(request):
     rng=''
     if(single=='2'):
         rng=request.POST['range']
-    print single,rng
     myfile = request.FILES['upload']
-    fs = FileSystemStorage(location='media/')
-    #print(fs.location)
-    filename = fs.save(myfile.name, myfile)
+    fs = FileSystemStorage(location='tosplit/')
+    n=myfile.name
+    print n
+    n=n.replace(" ","_")
+    filename = fs.save(n, myfile)
+    print filename
     uploaded_file_url = fs.url(filename)
-    #print(uploaded_file_url)
-    return HttpResponse('uploaded file '+uploaded_file_url+" to "+fs.location)
+    path=fs.location+(' \ ').strip()+uploaded_file_url
+    print path
+    if(function_split(rng,path)):
+        return HttpResponse('<a href="">Download file</a>')
+    else:
+        return HttpResponse('something went wrong')
