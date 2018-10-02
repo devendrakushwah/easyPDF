@@ -4,5 +4,29 @@
     <title>Split</title>
 {% endblock %}
 {% block body %}
-    Split
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4" style="background:#222222; padding: 10px">
+                    <form action="{% url 'utils:split_do' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="file" name="upload" multiple required style="margin-bottom: 20px;color: #fe944a"/>
+                        <input type="radio" name="single" value="1" onchange="document.getElementById('range').disabled=true;document.getElementById('range').value='';"><label class="utilsText">Split into single pages</label><br/>
+                         <input type="radio" name="single" value="2" onchange="document.getElementById('range').disabled=false;"><label class="utilsText">Custom Split</label><br/>
+                        <input type="text" id="range" class="utilsText" name="range" style="background: #222222; border-color:#fe944a;box-shadow: #fe944a;" placeholder="Refer to Help"><br/>
+                        <input type="submit" style="background:#fe944a;border: #fe944a;margin-top: 10px;width: 120px" class="btn btn-primary" >
+                    </form>
+            </div>
+
+
+            <div class="col-md-6" style="background:#222222;margin-left: 10px">
+                <h1 class="utilsName">Help</h1><hr/>
+                    <ol class="utilsText">
+                <li>To split PDF into single pages select oprion 1.</li>
+                <li>Otherwise select the second option and input the ranges as :<br/>
+                        if you want to split a pdf of 10 pages into 3 parts then input :<br/> <b>1-3,4-7,8-10</b>
+                </li>
+                    </ol>
+            </div>
+        </div>
+    </div>
 {% endblock %}

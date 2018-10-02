@@ -1,0 +1,14 @@
+    .utilsName
+    {
+        font-size: 40px;
+        color: white;
+        font-family: "Chaparral Pro";
+    }
+    .utilsText{
+        font-size: 20px;
+        font-style: italic;
+        color: #fe944a;
+    }
+    hr{
+        border-color: #fe944a;
+    }

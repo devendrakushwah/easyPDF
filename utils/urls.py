@@ -6,4 +6,5 @@ urlpatterns = [
     url(r'^merge/$',merge,name='merge'),
     url(r'^split/$',split,name='split'),
     url(r'^rotate/$',rotate,name='rotate'),
+    url(r'^split/do/$',split_do,name='split_do'),
 ]
