@@ -15,9 +15,3 @@ def function_split(ar,path):
     os.remove(path)
     shutil.make_archive(os.path.join("todownload//download"),'zip',os.path.join('splitted'))
     return True
-
-
-def function_merge(path):
-    pass
-def function_rotate(path,angle):
-    pass
