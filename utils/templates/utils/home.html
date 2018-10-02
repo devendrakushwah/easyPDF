@@ -1,0 +1,47 @@
+{% include 'utils/header.html' %}
+{% load staticfiles %}
+{% block title %}
+    <title>Home</title>
+{% endblock %}
+{% block body %}
+    <div class="container">
+    <div class="row">
+    <div class="col-md-3" style="background: #222; margin-top: 10px;padding: 10px">
+        <!--<img class="img-responsive center-block" src="{% static  "utils/images/merge.png"%}"><hr/>-->
+        <p class="utilsName">Merge PDFs</p>
+        <p class="utilsText">Merge multiple PDF files into one quickly and easily</p><hr/>
+        <button class="btn btn-primary" style="background: #fe944a;border: black;width: 120px" onclick="location.href='{% url 'utils:merge' %}'">Go</button>
+
+    </div>
+    <div class="col-md-3 " style="background: #222; padding: 10px;margin-top: 10px; margin-left: 10px;margin-right: 10px">
+        <!--<img class="img-responsive center-block" src="{% static  "utils/images/split.png"%}"><hr/>-->
+         <p class="utilsName">Split PDF</p>
+            <p class="utilsText">Split PDF file into pieces or pick just a few pages</p><hr/>
+        <button class="btn btn-primary" style="background: #fe944a;border: black;width: 120px" onclick="location.href='{% url 'utils:split' %}'">Go</button>
+    </div>
+        <div class="col-md-3" style="background: #222; margin-top: 10px;padding: 10px">
+        <!--<img class="img-responsive center-block" src="{% static  "utils/images/rotate.png"%}" ><hr/>-->
+            <p class="utilsName">Rotate PDF</p>
+            <p class="utilsText">Rotate a few PDF pages or change orientation of all pages</p><hr/>
+            <button class="btn btn-primary" style="background: #fe944a;border: black;width: 120px" onclick="location.href='{% url 'utils:rotate' %}'">Go</button>
+    </div>
+        </div>
+    </div>
+
+    <style>
+    .utilsName
+    {
+        font-size: 40px;
+        color: white;
+        font-family: "Chaparral Pro";
+    }
+    .utilsText{
+        font-size: 20px;
+        font-style: italic;
+        color: #fe944a;
+    }
+    hr{
+        border-color: #fe944a;
+    }
+    </style>
+{% endblock %}
