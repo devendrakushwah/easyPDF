@@ -44,7 +44,13 @@ def split_do(request):
     uploaded_file_url = fs.url(filename)
     path=fs.location+(' \ ').strip()+uploaded_file_url
     print path
+    temp=loader.get_template('utils/download.html')
+    context={}
+
     if(function_split(rng,path)):
-        return HttpResponse('<a href="">Download file</a>')
+        return HttpResponse(temp.render(context, request))
     else:
         return HttpResponse('something went wrong')
+def download(request):
+    #to add code to serve the created zips
+    pass
