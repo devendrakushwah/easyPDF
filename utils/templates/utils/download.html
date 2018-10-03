@@ -1,0 +1,8 @@
+{% include 'utils/header.html' %}
+{% load staticfiles %}
+{% block title %}
+    <title>Your download is ready</title>
+{% endblock %}
+{% block body %}
+    <a href="{% url 'utils:download' %}">Download ready</a>
+{% endblock %}
