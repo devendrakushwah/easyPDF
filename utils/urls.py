@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^split/do/$',split_do,name='split_do'),
     url(r'^merge/do/$',merge_do,name='merge_do'),
     url(r'^download/$',download,name='download'),
+    url(r'^merge/final',merge_final,name='merge_final'),
 ]

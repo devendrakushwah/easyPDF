@@ -1,6 +1,6 @@
 import os
 import shutil
-from PyPDF2 import PdfFileReader,PdfFileWriter
+from PyPDF2 import PdfFileReader,PdfFileWriter,PdfFileMerger
 
 
 def function_split(single,rng,path):
@@ -46,10 +46,18 @@ def function_split(single,rng,path):
 
 
 #--------------------------------------------------------------------------------
-def function_merge(info):
+def function_merge(info,indexes):
     names=info[0]
     paths=info[1]
-    #print(myfiles)
+    #print(indexes)
+    #print(names)
     #print(paths)
-
+    shutil.rmtree('merged')
+    os.mkdir('merged')
+    merger = PdfFileMerger()
+    for i in indexes:
+        ind=int(i)-1
+        merger.append(paths[ind])
+    merger.write("merged//download.pdf")
+    shutil.make_archive(os.path.join("todownload//download"), 'zip', os.path.join('merged'))
     return True

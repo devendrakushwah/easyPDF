@@ -20,7 +20,7 @@
 </head>
 <script>
     var i=0;
-    var ar=[];
+    var indexes='';
 </script>
 
 {% block body %}
@@ -37,16 +37,19 @@
         {% endfor %}
     </ul>
      </div>
-    <button onclick="myFun()">Hello</button>
+    <button class="btn btn-primary" style="left:50%;position:absolute;background: #fe944a;border: black;solid; height: 40px" onclick="myFun()">Done</button>
 {% endblock %}
+
+
 <script>
     function myFun()
     {
         a=document.getElementsByClassName('py')
         //console.log(a)
         for(var i=0;i<a.length;i++){
-            //console.log(a[i]['id'])
-            ar.push(a[i]['id'])
+            indexes+=(a[i]['id'])
         }
+        window.location.replace("http://127.0.0.1:8000/utils/merge/final?q="+indexes);
+        console.log(indexes)
     }
 </script>

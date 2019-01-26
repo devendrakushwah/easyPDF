@@ -6,6 +6,8 @@ from django.template import  loader
 from django.shortcuts import render
 from django.http import HttpResponse
 from .functions import *
+from pickle import *
+
 # Create your views here.
 def home(request):
     temp=loader.get_template('utils/home.html')
@@ -70,8 +72,24 @@ def merge_do(request):
     info=[names,paths]
     temp=loader.get_template('utils/order.html')
     context={'names':info[0]}
+
+    #to save the file information for future use
+    inf=open('inf.dat','wb')
+    dump(info,inf)
+    inf.close()
+
     return HttpResponse(temp.render(context, request))
 
+def merge_final(request):
+    indexes=request.GET['q']
+    f=open('inf.dat','rb')
+    info=load(f)
+    temp=loader.get_template('utils/download.html')
+    context={}
+    if(function_merge(info,indexes)):
+        return HttpResponse(temp.render(context, request))
+    else:
+        return HttpResponse('something went wrong')
 
 def download(request):
     response = HttpResponse(open('todownload/download.zip', 'rb'), content_type='application/zip')
