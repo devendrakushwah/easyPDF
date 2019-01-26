@@ -7,5 +7,6 @@ urlpatterns = [
     url(r'^split/$',split,name='split'),
     url(r'^rotate/$',rotate,name='rotate'),
     url(r'^split/do/$',split_do,name='split_do'),
+    url(r'^merge/do/$',merge_do,name='merge_do'),
     url(r'^download/$',download,name='download'),
 ]

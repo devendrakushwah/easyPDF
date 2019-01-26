@@ -1,8 +1,9 @@
 import os
 import shutil
 from PyPDF2 import PdfFileReader,PdfFileWriter
-def function_split(single,rng,path):
 
+
+def function_split(single,rng,path):
     #to remove previously splitted files
     shutil.rmtree('splitted')
     os.mkdir('splitted')
@@ -42,3 +43,8 @@ def function_split(single,rng,path):
         return True
 
     return False
+
+
+#--------------------------------------------------------------------------------
+def function_merge():
+    return 0

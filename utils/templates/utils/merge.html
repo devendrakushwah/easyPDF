@@ -4,5 +4,24 @@
     <title>Merge</title>
 {% endblock %}
 {% block body %}
-    {{ context}}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4" style="background:#222222; padding: 10px">
+                    <form action="{% url 'utils:merge_do' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="file" name="upload" multiple required style="margin-bottom: 20px;color: #fe944a"/>
+                       <input type="submit" style="background:#fe944a;border: #fe944a;margin-top: 10px;width: 120px" class="btn btn-primary" >
+                    </form>
+            </div>
+
+
+            <div class="col-md-6" style="background:#222222;margin-left: 10px">
+                <h1 class="utilsName">Help</h1><hr/>
+                    <ol class="utilsText">
+                <li>Upload multiple files at a time.</li>
+                <li>You will be allowed to rearrange them at the next page.<br/></li>
+                    </ol>
+            </div>
+        </div>
+    </div>
 {% endblock %}

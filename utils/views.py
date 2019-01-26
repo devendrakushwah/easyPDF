@@ -13,10 +13,8 @@ def home(request):
     return HttpResponse(temp.render(context,request))
 
 def merge(request):
-    request.session['id']=3135153
-    s=request.session['id']
     temp=loader.get_template('utils/merge.html')
-    context={'s':s}
+    context={}
     return HttpResponse(temp.render(context,request))
 
 def split(request):
@@ -30,6 +28,8 @@ def rotate(request):
     return HttpResponse(temp.render(context,request))
 
 def split_do(request):
+    shutil.rmtree('tosplit')
+    os.mkdir('tosplit')
     single=request.POST['single']
     rng=''
     if(single=='2'):
@@ -47,6 +47,26 @@ def split_do(request):
         return HttpResponse(temp.render(context, request))
     else:
         return HttpResponse('something went wrong')
+
+
+def merge_do(request):
+    shutil.rmtree('tomerge')
+    os.mkdir('tomerge')
+    myfiles = request.FILES.getlist('upload') #to get list of uploaded files
+    print(myfiles)
+    paths=[]
+    fs = FileSystemStorage(location='tomerge/')
+
+    #iterate through each file and add to path
+    for f in myfiles:
+        n=f.name
+        n = n.replace(" ", "_")
+        filename = fs.save(n,f)
+        uploaded_file_url = fs.url(filename)
+        paths.append(fs.location + (' \ ').strip() + uploaded_file_url)
+    #print(paths)
+    info=[myfiles,paths]
+    return HttpResponse('')
 
 def download(request):
     response = HttpResponse(open('todownload/download.zip', 'rb'), content_type='application/zip')
