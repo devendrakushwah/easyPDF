@@ -1,0 +1,52 @@
+{% include 'utils/header.html' %}
+{% load staticfiles %}
+{% block title %}
+    <title>Arrange your files in order</title>
+{% endblock %}
+
+<head>
+      <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $( "#sortable" ).sortable();
+    $( "#sortable" ).disableSelection();
+  } );
+  </script>
+    <style>
+            li span { position: relative; left: -10px; }
+    </style>
+</head>
+<script>
+    var i=0;
+    var ar=[];
+</script>
+
+{% block body %}
+    <div style="background:#222222;margin-left: 10px;padding: 5px">
+        <h1 class="utilsName">Drag and Drop the files to arrange them in order.</h1><hr/>
+    </div>
+    <div class="container" style="margin-top: 20px">
+    <ul id="sortable">
+        {% for i in names %}
+            <div style="background-color: #222222;color: #fe944a;padding:10px;margin-bottom:5px;font-size: 24px;border: #fe944a;border: solid;border-radius:20px">
+                <li class="py" id="{{ forloop.counter }}"><span>{{ i }}</span></li>
+                <script>i=i+1</script>
+            </div>
+        {% endfor %}
+    </ul>
+     </div>
+    <button onclick="myFun()">Hello</button>
+{% endblock %}
+<script>
+    function myFun()
+    {
+        a=document.getElementsByClassName('py')
+        //console.log(a)
+        for(var i=0;i<a.length;i++){
+            //console.log(a[i]['id'])
+            ar.push(a[i]['id'])
+        }
+    }
+</script>

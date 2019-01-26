@@ -46,5 +46,10 @@ def function_split(single,rng,path):
 
 
 #--------------------------------------------------------------------------------
-def function_merge():
-    return 0
+def function_merge(info):
+    names=info[0]
+    paths=info[1]
+    #print(myfiles)
+    #print(paths)
+
+    return True

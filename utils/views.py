@@ -53,8 +53,9 @@ def merge_do(request):
     shutil.rmtree('tomerge')
     os.mkdir('tomerge')
     myfiles = request.FILES.getlist('upload') #to get list of uploaded files
-    print(myfiles)
+    #print(myfiles)
     paths=[]
+    names=[]
     fs = FileSystemStorage(location='tomerge/')
 
     #iterate through each file and add to path
@@ -64,9 +65,13 @@ def merge_do(request):
         filename = fs.save(n,f)
         uploaded_file_url = fs.url(filename)
         paths.append(fs.location + (' \ ').strip() + uploaded_file_url)
+        names.append(n)
     #print(paths)
-    info=[myfiles,paths]
-    return HttpResponse('')
+    info=[names,paths]
+    temp=loader.get_template('utils/order.html')
+    context={'names':info[0]}
+    return HttpResponse(temp.render(context, request))
+
 
 def download(request):
     response = HttpResponse(open('todownload/download.zip', 'rb'), content_type='application/zip')
