@@ -37,17 +37,13 @@ def split_do(request):
     myfile = request.FILES['upload']
     fs = FileSystemStorage(location='tosplit/')
     n=myfile.name
-    #print n
     n=n.replace(" ","_")
     filename = fs.save(n, myfile)
-    #print filename
     uploaded_file_url = fs.url(filename)
     path=fs.location+(' \ ').strip()+uploaded_file_url
-    #print path
     temp=loader.get_template('utils/download.html')
     context={}
-
-    if(function_split(rng,path)):
+    if(function_split(single,rng,path)):
         return HttpResponse(temp.render(context, request))
     else:
         return HttpResponse('something went wrong')
